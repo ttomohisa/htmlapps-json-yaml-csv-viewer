@@ -1,0 +1,4 @@
+name,role,score,active
+Aki,admin,98,true
+Mina,editor,87,true
+Ren,,91,false

@@ -1,0 +1,22 @@
+{
+  "project": "Local Data Viewer",
+  "version": 1,
+  "active": true,
+  "owners": [
+    {
+      "name": "Aki",
+      "role": "admin",
+      "score": 98
+    },
+    {
+      "name": "Mina",
+      "role": "editor",
+      "score": 87
+    },
+    {
+      "name": "Ren",
+      "role": null,
+      "score": 91
+    }
+  ]
+}

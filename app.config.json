@@ -1,0 +1,22 @@
+{
+  "$schema": "./schemas/app-config.schema.json",
+  "name": "JSON / YAML / CSV Viewer",
+  "nameJa": "JSON / YAML / CSV 万能ビューア",
+  "slug": "htmlapps-json-yaml-csv-viewer",
+  "version": "1.0",
+  "description": "Inspect, search, profile, validate, and convert JSON, YAML, CSV, TSV, and JSON Lines entirely in the browser.",
+  "descriptionJa": "JSON / YAML / CSV / TSV / JSON Lines をブラウザー内だけで閲覧・検索・解析・品質チェック・変換できるローカルファーストツールです。",
+  "defaultLanguage": "auto",
+  "repository": {
+    "owner": "ttomohisa",
+    "name": "htmlapps-json-yaml-csv-viewer"
+  },
+  "build": {
+    "output": "dist/index.html",
+    "blockRuntimeNetwork": true,
+    "selfExtract": {
+      "enabled": true,
+      "output": "dist/index.self-extract.html"
+    }
+  }
+}
