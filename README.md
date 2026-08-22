@@ -14,6 +14,8 @@ A privacy-focused, single-HTML viewer for inspecting, searching, profiling, chec
 
 GitHub Pages delivers the initial HTML. After it loads, file decoding, parsing, searching, tree/table rendering, profiling, quality checks, schema inference, and conversion are processed locally on your device. Files you select are not uploaded by the app.
 
+![JSON / YAML / CSV Viewer showing an expanded sample JSON tree and data-quality summary](assets/screenshot.png)
+
 ## Features
 
 - Open files by drag and drop or file picker
