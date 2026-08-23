@@ -43,7 +43,8 @@ foreach($d in $deps){
 $manifest=[ordered]@{schemaVersion=1;builder='htmlapps-template/1.0';generatedAtUtc=[DateTime]::UtcNow.ToString('o');app=[ordered]@{name=[string]$app.name;slug=[string]$app.slug;version=[string]$app.version};dependencies=$manifestDeps}
 $template=[IO.File]::ReadAllText($TemplatePath,[Text.Encoding]::UTF8)
 $bundleJson=Json $bundle 50
-$replace=[ordered]@{'__APP_CONFIG_JSON__'=(Json $app 20);'__BUILD_MANIFEST_JSON__'=(Json $manifest 40);'__EMBEDDED_ASSET_BUNDLE_BASE64__'=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($bundleJson))}
+$faviconSource=Join-Path $Root 'assets\favicon.svg'; if(-not(Test-Path $faviconSource)){throw 'assets/favicon.svg is required.'}; $faviconSvg=([IO.File]::ReadAllText($faviconSource,[Text.Encoding]::UTF8) -replace "`r?`n",' ').Trim(); $faviconDataUrl='data:image/svg+xml,'+$faviconSvg
+$replace=[ordered]@{'__APP_CONFIG_JSON__'=(Json $app 20);'__BUILD_MANIFEST_JSON__'=(Json $manifest 40);'__EMBEDDED_ASSET_BUNDLE_BASE64__'=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($bundleJson));'__FAVICON_DATA_URL__'=$faviconDataUrl}
 foreach($k in $replace.Keys){$count=([regex]::Matches($template,[regex]::Escape($k))).Count;if($count -ne 1){throw "Template placeholder $k must occur exactly once; found $count."};$template=$template.Replace($k,[string]$replace[$k])}
 if([string]::IsNullOrWhiteSpace($OutputPath)){$OutputPath=Join-Path $Root ([string]$app.build.output)}elseif(-not [IO.Path]::IsPathRooted($OutputPath)){$OutputPath=Join-Path $Root $OutputPath}
 New-Item -ItemType Directory -Force -Path (Split-Path -Parent $OutputPath)|Out-Null
