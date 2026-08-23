@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="JSON YAML CSV">
+  <rect width="64" height="64" rx="16" fill="#16624f"/>
+  <rect x="10" y="9" width="44" height="46" rx="8" fill="none" stroke="#ffffff" stroke-opacity=".22" stroke-width="2"/>
+  <text x="32" y="22" text-anchor="middle" fill="#ffffff" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="800" letter-spacing=".25">JSON</text>
+  <path d="M16 27h32" stroke="#ffffff" stroke-opacity=".22" stroke-width="1.5"/>
+  <text x="32" y="39" text-anchor="middle" fill="#ffffff" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="800" letter-spacing=".15">YAML</text>
+  <path d="M16 44h32" stroke="#ffffff" stroke-opacity=".22" stroke-width="1.5"/>
+  <text x="32" y="53" text-anchor="middle" fill="#ffffff" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="800" letter-spacing=".5">CSV</text>
+</svg>
