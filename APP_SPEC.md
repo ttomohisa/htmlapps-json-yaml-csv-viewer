@@ -66,3 +66,7 @@
 - The main flow works from direct `file://` opening.
 - Representative JSON/YAML/CSV/JSONL samples parse without console errors.
 - Japanese and English controls fit at narrow mobile width.
+
+## Large-data profiling acceptance
+- CSV row width, object-array table length and numeric/string-length column extrema use bounded argument counts, including 200,000-row inputs.
+- Full tree rendering retains its existing memory/DOM cost; analysis/table views and export remain the recommended checks for large datasets.

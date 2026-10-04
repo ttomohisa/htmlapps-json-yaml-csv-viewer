@@ -186,3 +186,6 @@ Bug reports and feature proposals are welcome through GitHub Issues. See [CONTRI
 Copyright © 2026 ttomohisa
 
 Licensed under the [MIT License](LICENSE).
+
+### Large-data regression checks
+Run `node --test scripts/test-large-data.cjs`, then the canonical `scripts/check-repository.ps1`. With an existing Node.js Playwright runtime, run `node scripts/test-large-data-browser.cjs`; set `NODE_PATH` to that runtime node_modules when external and optionally `PLAYWRIGHT_BROWSER_CHANNEL` (default msedge). The browser check selects Analysis before opening the 200,000-row CSV, then verifies Table and full JSON export. The existing full Tree DOM/memory cost is not bounded by this fix.
