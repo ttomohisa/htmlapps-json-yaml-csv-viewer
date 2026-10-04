@@ -22,6 +22,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
+      - name: Test large structured data
+        run: node --test scripts/test-large-data.cjs
       - name: Build and verify standalone HTML
         shell: pwsh
         run: ./scripts/check-repository.ps1

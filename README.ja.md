@@ -186,3 +186,6 @@ v1.0では、実行時に利用する**外部JavaScript / CSS / フォント / W
 Copyright © 2026 ttomohisa
 
 このプロジェクトは [MIT License](LICENSE) で公開されています。
+
+### 大容量データの回帰検証
+`node --test scripts/test-large-data.cjs` と標準の `scripts/check-repository.ps1` を実行します。既存のNode.js用Playwright環境で `node scripts/test-large-data-browser.cjs` を実行できます。外部環境のnode_modulesは `NODE_PATH`、ブラウザーは `PLAYWRIGHT_BROWSER_CHANNEL`（既定msedge）で指定します。実ブラウザー検証は解析ビューで20万行CSVを開き、表と全件JSON書き出しを確認します。ツリー全体をDOM化する既存のメモリ・表示コストは今回の修正対象外です。
