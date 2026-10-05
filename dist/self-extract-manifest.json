@@ -1,24 +1,24 @@
 {
-    "schemaVersion":  1,
-    "generatedAtUtc":  "2026-10-04T00:07:14.8602485Z",
-    "source":  {
-                   "path":  "index.html",
-                   "bytes":  65133,
-                   "sha256":  "e2cafee1303684c04478fe5a900a601d7da2943b55738b024b32575243a7bfe9"
-               },
-    "compressedPayload":  {
-                              "format":  "gzip",
-                              "bytes":  19639,
-                              "sha256":  "8e51195078708194054e730d0b8802fb5a5d7d3c4fece2308a20c78d0ba05cf7",
-                              "encoding":  "base64"
-                          },
-    "output":  {
-                   "path":  "index.self-extract.html",
-                   "bytes":  29345,
-                   "sha256":  "a09ce1f889828cd7069f34f161ca03702429069353fea40eee2acd2ce4790b93"
-               },
-    "runtime":  {
-                    "decompressor":  "DecompressionStream",
-                    "networkRequired":  false
-                }
+  "schemaVersion": 1,
+  "generatedAtUtc": "2026-10-05T09:21:15.1038315Z",
+  "source": {
+    "path": "index.html",
+    "bytes": 65225,
+    "sha256": "0963436b3c7036e8e622314fe50ee44b13499ad3f9de608b52d9ef08c922fa38"
+  },
+  "compressedPayload": {
+    "format": "gzip",
+    "bytes": 20064,
+    "sha256": "ba2b13ceca1bc1996a5bf3b25a27568adbf2387d430055cd55ca43782f929780",
+    "encoding": "base64"
+  },
+  "output": {
+    "path": "index.self-extract.html",
+    "bytes": 29909,
+    "sha256": "40ad3fe226c7abd6a2b3f8decc529fb95300e31e4ce2584fb4d301953178016e"
+  },
+  "runtime": {
+    "decompressor": "DecompressionStream",
+    "networkRequired": false
+  }
 }
