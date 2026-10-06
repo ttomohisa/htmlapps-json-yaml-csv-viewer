@@ -21,7 +21,7 @@ GitHub Pagesから最初のHTMLを読み込んだ後、文字コード判定・�
 - ドラッグ&ドロップまたはファイル選択で読み込み
 - JSON / YAML / CSV / TSV / JSON Lines / NDJSON を自動判定
 - JSON / YAML を展開可能なツリーで表示
-- ツリーから値やJSONPath風のパスをコピー
+- ツリーから値やJSONPath風のパス、オブジェクト・配列の部分データを整形JSONとしてコピー
 - CSVやオブジェクト配列をページング付きの表で表示
 - キー・値・パスをデータ全体から横断検索
 - 正規化した整形テキストを表示
@@ -189,3 +189,9 @@ Copyright © 2026 ttomohisa
 
 ### 大容量データの回帰検証
 `node --test scripts/test-large-data.cjs` と標準の `scripts/check-repository.ps1` を実行します。既存のNode.js用Playwright環境で `node scripts/test-large-data-browser.cjs` を実行できます。外部環境のnode_modulesは `NODE_PATH`、ブラウザーは `PLAYWRIGHT_BROWSER_CHANNEL`（既定msedge）で指定します。実ブラウザー検証は解析ビューで20万行CSVを開き、表と全件JSON書き出しを確認します。ツリー全体をDOM化する既存のメモリ・表示コストは今回の修正対象外です。
+
+### ツリーの部分データをコピー
+
+ツリー表示でオブジェクトや配列の「JSONをコピー」を選ぶと、その部分の解析済みデータを整形JSONとしてコピーできます。ルートや空のコンテナにも対応します。元ファイルの文字列ではないため、元の空白や数値表記は保存しません。非有限数や負のゼロなど、JSON化で値が変わる場合は理由を表示してコピーしません。既存の値・パスのコピーも利用できます。
+
+ビルド後にルートのHTMLを更新し、`node --test scripts/test-tree-copy.cjs` でソース、通常版、ルート配布版、自己展開版の復元内容を検証できます。

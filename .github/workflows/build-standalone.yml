@@ -27,8 +27,8 @@ jobs:
       - name: Build and verify standalone HTML
         shell: pwsh
         run: ./scripts/check-repository.ps1
-      - name: Test unique search results in all releases
-        run: node --test scripts/test-search.cjs
+      - name: Test search and tree copy in all releases
+        run: node --test scripts/test-search.cjs scripts/test-tree-copy.cjs
       - name: Upload standalone artifact
         uses: actions/upload-artifact@v7
         with:
