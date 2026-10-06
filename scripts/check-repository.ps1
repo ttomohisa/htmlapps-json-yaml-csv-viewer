@@ -7,3 +7,8 @@ if (-not (Get-Command node -ErrorAction SilentlyContinue)) { throw "Node.js 22 o
 & node (Join-Path $Root "scripts/test-header-consistency.cjs") (Join-Path $Root "src/index.template.html") (Join-Path $Root "dist/index.html") (Join-Path $Root "json-yaml-csv-viewer.html") (Join-Path $Root "dist/index.self-extract.html")
 if ($LASTEXITCODE -ne 0) { throw "Header consistency regression checks failed." }
 Write-Host "[OK] Header consistency checks passed." -ForegroundColor Green
+
+# CSV/TSV integer preservation and cross-format export regressions.
+& node (Join-Path $Root "scripts/test-csv-precision.cjs")
+if ($LASTEXITCODE -ne 0) { throw "CSV precision regression checks failed." }
+Write-Host "[OK] CSV precision checks passed." -ForegroundColor Green
