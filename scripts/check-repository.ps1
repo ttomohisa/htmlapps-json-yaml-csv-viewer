@@ -12,3 +12,8 @@ Write-Host "[OK] Header consistency checks passed." -ForegroundColor Green
 & node (Join-Path $Root "scripts/test-csv-precision.cjs")
 if ($LASTEXITCODE -ne 0) { throw "CSV precision regression checks failed." }
 Write-Host "[OK] CSV precision checks passed." -ForegroundColor Green
+
+# Existing data-quality findings and accessible labels follow language changes.
+& node (Join-Path $Root "scripts/test-language-refresh.cjs")
+if ($LASTEXITCODE -ne 0) { throw "Language refresh regression checks failed." }
+Write-Host "[OK] Language refresh checks passed." -ForegroundColor Green

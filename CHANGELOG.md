@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.3 - 2026-10-06
+
+- Refresh existing data-quality results immediately when switching between Japanese and English, without reparsing the file or changing its data.
+- Localize view-switcher and dialog-close accessible names on initial load and every language change.
+- Add repeated-toggle regressions for all quality findings and canonical release variants, preserving table pages, search state, and unsafe-integer strings.
+
 ## v1.0.2 - 2026-10-06
 
 - Preserve CSV/TSV unsafe integers and numeric overflow as their original string lexemes instead of silently rounding large identifiers.
