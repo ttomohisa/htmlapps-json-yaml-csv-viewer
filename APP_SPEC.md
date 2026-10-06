@@ -3,7 +3,7 @@
 ## 1. Product identity
 
 - **Name:** JSON / YAML / CSV Viewer
-- **Version:** 1.0
+- **Version:** 1.0.1
 - **Purpose:** Inspect, search, profile, validate, and convert common structured-data files without uploading them.
 - **Release artifacts:** `dist/index.html` and `dist/index.self-extract.html`
 
@@ -50,6 +50,8 @@
 - Visible keyboard focus, accessible labels, native dialogs, and `aria-live` status.
 - Respect `prefers-reduced-motion`.
 - Japanese and English in the same HTML.
+- The header uses EN in Japanese and JA in English, with localized target-language names and Help labels. The version follows vMAJOR.MINOR.PATCH.
+- The local-processing badge reads 完全ローカル処理 / Fully local processing. Existing responsive visibility is unchanged.
 
 ## 7. Known limitations
 
