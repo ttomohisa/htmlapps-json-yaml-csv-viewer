@@ -1,5 +1,13 @@
 # Changelog
 
+## Subtree copy and scalar roots — 2026-10-06
+
+- Add localized Copy JSON actions for object and array subtrees, including root and empty containers, with keyboard and touch access.
+- Keep exact parsed references in a per-render Map and serialize only when copying; refuse non-finite numbers and negative zero instead of silently changing them.
+- Refresh all views for valid `0`, `false`, and empty-string roots instead of leaving the previous file visible.
+- Invalidate stale clipboard actions across file/parse changes, reset, view/language re-renders and later copy attempts; report fallback failures accurately.
+- Add dependency-free regressions for every release variant and preserve existing search and large-data checks.
+
 ## Search results — 2026-10-05
 
 - Show each matching path once when its key/path and scalar value both match, preserving the first-match order and navigation value.

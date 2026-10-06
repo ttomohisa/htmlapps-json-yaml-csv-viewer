@@ -70,3 +70,12 @@
 ## Large-data profiling acceptance
 - CSV row width, object-array table length and numeric/string-length column extrema use bounded argument counts, including 200,000-row inputs.
 - Full tree rendering retains its existing memory/DOM cost; analysis/table views and export remain the recommended checks for large datasets.
+
+## Tree copy acceptance
+- Every rendered object/array summary, including the root and empty containers, offers localized Copy JSON.
+- Copy uses the exact selected parsed subtree, formatted on demand; source bytes/formatting are not promised.
+- JSON serialization that would change non-finite numbers or negative zero is refused with a localized explanation.
+- Tree buttons use per-render value references, never evaluated paths or serialized subtree attributes.
+- File/parse changes, reset, language/view re-renders and later copy attempts invalidate stale clipboard feedback/fallbacks.
+- Valid scalar roots (`0`, `false`, and the empty string) refresh all four views; `null` remains valid.
+- Primitive value/path copy, search navigation, parser semantics and existing large-data behavior remain unchanged.

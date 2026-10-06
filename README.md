@@ -21,7 +21,7 @@ GitHub Pages delivers the initial HTML. After it loads, file decoding, parsing, 
 - Open files by drag and drop or file picker
 - Automatically detect JSON, YAML, CSV / TSV, and JSON Lines / NDJSON
 - Browse JSON and YAML as an expandable tree
-- Copy a value or its JSONPath-like path from the tree
+- Copy a value, its JSONPath-like path, or any object/array subtree as formatted JSON from the tree
 - View CSV and array-of-object data in a paged table
 - Search keys, values, and paths across the whole parsed document
 - View normalized, formatted text
@@ -67,6 +67,10 @@ Python, Node.js, and a local web server are not required. The builder uses Windo
 4. Use the search box to find matching keys, values, or paths.
 5. Review the Analyze view for column profiles, basic quality findings, and inferred JSON Schema.
 6. Use the download action to export the parsed data as JSON, YAML, CSV, or JSON Schema.
+
+### Copy a subtree
+
+In Tree view, choose **Copy JSON** beside an object or array, including the root and empty containers. The clipboard receives that parsed subtree as indented JSON. This is parsed data, not the original file text: source formatting and numeric spelling are not preserved. Copying is refused with an explanation if JSON serialization would change values such as non-finite numbers or negative zero. Primitive value and path copy remain available.
 
 ### Supported inputs
 
@@ -189,3 +193,6 @@ Licensed under the [MIT License](LICENSE).
 
 ### Large-data regression checks
 Run `node --test scripts/test-large-data.cjs`, then the canonical `scripts/check-repository.ps1`. With an existing Node.js Playwright runtime, run `node scripts/test-large-data-browser.cjs`; set `NODE_PATH` to that runtime node_modules when external and optionally `PLAYWRIGHT_BROWSER_CHANNEL` (default msedge). The browser check selects Analysis before opening the 200,000-row CSV, then verifies Table and full JSON export. The existing full Tree DOM/memory cost is not bounded by this fix.
+
+### Tree and clipboard regression checks
+Run `node --test scripts/test-tree-copy.cjs` after building and refreshing the root HTML download. The suite exercises source, readable release, root download, and restored self-extract payload without a browser. For source-only development, use `TREE_SOURCE_ONLY=1 node --test scripts/test-tree-copy.cjs`.

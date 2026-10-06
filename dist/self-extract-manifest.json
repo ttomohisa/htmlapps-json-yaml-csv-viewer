@@ -1,21 +1,21 @@
 {
   "schemaVersion": 1,
-  "generatedAtUtc": "2026-10-05T09:21:15.1038315Z",
+  "generatedAtUtc": "2026-10-06T00:17:03.7067678Z",
   "source": {
     "path": "index.html",
-    "bytes": 65225,
-    "sha256": "0963436b3c7036e8e622314fe50ee44b13499ad3f9de608b52d9ef08c922fa38"
+    "bytes": 68079,
+    "sha256": "745304f55c677412b958adbb5bf016707aef605899de4d59719f885d74041de2"
   },
   "compressedPayload": {
     "format": "gzip",
-    "bytes": 20064,
-    "sha256": "ba2b13ceca1bc1996a5bf3b25a27568adbf2387d430055cd55ca43782f929780",
+    "bytes": 21001,
+    "sha256": "dd2a578bac890b5b15bff83c0da7fa0d393ecce7174d43583d3edb657395f1d9",
     "encoding": "base64"
   },
   "output": {
     "path": "index.self-extract.html",
-    "bytes": 29909,
-    "sha256": "40ad3fe226c7abd6a2b3f8decc529fb95300e31e4ce2584fb4d301953178016e"
+    "bytes": 31161,
+    "sha256": "292f08a401406714a96ed09eb2f5995d4622c64b219206afe244a488af206b15"
   },
   "runtime": {
     "decompressor": "DecompressionStream",
