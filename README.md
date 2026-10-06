@@ -177,7 +177,7 @@ See [SECURITY.md](SECURITY.md) and [VERIFY_OFFLINE.md](VERIFY_OFFLINE.md) for th
 
 ## Dependencies
 
-Version 1.0.1 has **no runtime third-party JavaScript, CSS, font, WASM, or other package dependency**. Parsing and UI behavior are implemented with browser-native APIs and project code.
+Version 1.0.2 has **no runtime third-party JavaScript, CSS, font, WASM, or other package dependency**. Parsing and UI behavior are implemented with browser-native APIs and project code.
 
 See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for dependency policy and notices.
 
@@ -196,3 +196,9 @@ Run `node --test scripts/test-large-data.cjs`, then the canonical `scripts/check
 
 ### Tree and clipboard regression checks
 Run `node --test scripts/test-tree-copy.cjs` after building and refreshing the root HTML download. The suite exercises source, readable release, root download, and restored self-extract payload without a browser. For source-only development, use `TREE_SOURCE_ONLY=1 node --test scripts/test-tree-copy.cjs`.
+
+## CSV / TSV integer precision
+
+CSV/TSV numeric fields that would become unsafe JavaScript integers (outside ±9,007,199,254,740,991) or overflow are retained as their original strings. This includes decimal/exponent spellings that would produce unsafe integers. The exact string survives CSV, JSON, and YAML export/reimport; the schema and column profile report it as a string. Safe numbers and ordinary scalar inference are unchanged.
+
+This is not arbitrary-precision decimal parsing: ordinary decimals and JSON/YAML numeric input still use JavaScript Number semantics. Run `node scripts/test-csv-precision.cjs` after the canonical build and root-download refresh to check all release variants, or pass `src/index.template.html` for a source-only regression check. The canonical repository check also runs the precision suite.

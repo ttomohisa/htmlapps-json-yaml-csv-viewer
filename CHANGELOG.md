@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.2 - 2026-10-06
+
+- Preserve CSV/TSV unsafe integers and numeric overflow as their original string lexemes instead of silently rounding large identifiers.
+- Keep numeric-looking strings quoted in YAML exports so protected values survive CSV, JSON, and YAML round trips.
+- Preserve safe-number and ordinary scalar inference, document the remaining decimal/input precision limits, and add regressions for all canonical release variants.
+
 ## v1.0.1 - 2026-10-06
 
 - Standardize local-processing badge and EN / JA header controls with localized target-language names and Help titles.

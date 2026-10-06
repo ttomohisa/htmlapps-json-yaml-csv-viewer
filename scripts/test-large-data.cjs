@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 const path = require('node:path');
 const source=fs.readFileSync(path.join(__dirname,'../src/index.template.html'),'utf8');
-const names=['parseCSV','coerceScalar','toTable','profileColumns','typeOf','safeString'];
+const names=['parseCSV','coerceCsvScalar','coerceScalar','toTable','profileColumns','typeOf','safeString'];
 const functions=names.map(name=>{const line=source.split(/\r?\n/).find(l=>l.startsWith(`function ${name}(`));assert.ok(line,name);return line}).join('\n');
 const app=vm.createContext({});vm.runInContext(functions,app);
 const plain=value=>JSON.parse(JSON.stringify(value));

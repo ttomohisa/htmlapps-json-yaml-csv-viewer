@@ -3,7 +3,7 @@
 ## 1. Product identity
 
 - **Name:** JSON / YAML / CSV Viewer
-- **Version:** 1.0.1
+- **Version:** 1.0.2
 - **Purpose:** Inspect, search, profile, validate, and convert common structured-data files without uploading them.
 - **Release artifacts:** `dist/index.html` and `dist/index.self-extract.html`
 
@@ -81,3 +81,10 @@
 - File/parse changes, reset, language/view re-renders and later copy attempts invalidate stale clipboard feedback/fallbacks.
 - Valid scalar roots (`0`, `false`, and the empty string) refresh all four views; `null` remains valid.
 - Primitive value/path copy, search navigation, parser semantics and existing large-data behavior remain unchanged.
+
+## CSV / TSV numeric precision acceptance
+
+- Numeric fields whose inferred JavaScript Number is an unsafe integer or non-finite are retained as their original string lexemes, including decimal/exponent spellings.
+- Safe numbers, booleans, nulls, empty fields, header handling, and the existing CSV/TSV parser remain compatible.
+- Protected values stay strings in schema/profile output and survive CSV, JSON, and YAML export/reimport; numeric-looking strings are quoted in YAML output.
+- This is not arbitrary-precision decimal parsing. Ordinary decimals and JSON/YAML numeric input retain their existing Number semantics.
