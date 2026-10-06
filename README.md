@@ -138,7 +138,7 @@ If Pages has not been enabled yet, the workflow still completes the build and ve
 
 Edit `src/index.template.html`; do not edit the generated files in `dist/` by hand.
 
-To run the complete repository check:
+The complete repository check requires Node.js 22 or newer for its header regressions. To run it:
 
 ```powershell
 powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\scripts\check-repository.ps1
@@ -177,7 +177,7 @@ See [SECURITY.md](SECURITY.md) and [VERIFY_OFFLINE.md](VERIFY_OFFLINE.md) for th
 
 ## Dependencies
 
-Version 1.0 has **no runtime third-party JavaScript, CSS, font, WASM, or other package dependency**. Parsing and UI behavior are implemented with browser-native APIs and project code.
+Version 1.0.1 has **no runtime third-party JavaScript, CSS, font, WASM, or other package dependency**. Parsing and UI behavior are implemented with browser-native APIs and project code.
 
 See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for dependency policy and notices.
 

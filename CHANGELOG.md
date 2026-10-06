@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.1 - 2026-10-06
+
+- Standardize local-processing badge and EN / JA header controls with localized target-language names and Help titles.
+- Synchronize canonical metadata and standalone header versions at v1.0.1 after normalizing the legacy 1.0 version to 1.0.0.
+- Add header regressions for source, readable, root download, and decompressed self-extract variants; preserve data behavior and responsive visibility.
+
 ## Subtree copy and scalar roots — 2026-10-06
 
 - Add localized Copy JSON actions for object and array subtrees, including root and empty containers, with keyboard and touch access.

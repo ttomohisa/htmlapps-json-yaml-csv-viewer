@@ -134,7 +134,7 @@ Pagesがまだ有効になっていない場合も、ビルドと検証は成功
 
 開発時は `src/index.template.html` を編集し、生成物である `dist/` は直接編集しません。
 
-リポジトリ全体をビルド・検証する場合：
+リポジトリ全体の検証には、ヘッダー回帰テスト用の Node.js 22 以降が必要です。ビルド・検証する場合：
 
 ```powershell
 powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\scripts\check-repository.ps1
@@ -173,7 +173,7 @@ GitHub Pages版では最初のHTMLを取得する通信は発生しますが、�
 
 ## 使用ライブラリ
 
-v1.0では、実行時に利用する**外部JavaScript / CSS / フォント / WASM / その他のサードパーティパッケージはありません**。ブラウザー標準APIとプロジェクト内のコードだけで動作します。
+v1.0.1では、実行時に利用する**外部JavaScript / CSS / フォント / WASM / その他のサードパーティパッケージはありません**。ブラウザー標準APIとプロジェクト内のコードだけで動作します。
 
 依存関係の方針とライセンス情報は [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) を確認してください。
 
