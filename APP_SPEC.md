@@ -3,7 +3,7 @@
 ## 1. Product identity
 
 - **Name:** JSON / YAML / CSV Viewer
-- **Version:** 1.0.5
+- **Version:** 1.0.6
 - **Purpose:** Inspect, search, profile, validate, and convert common structured-data files without uploading them.
 - **Release artifacts:** `dist/index.html` and `dist/index.self-extract.html`
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.6 - 2026-10-09
+
+- Normalize the app icon background to `#16624f` with 25% corner radii, and keep the asset, header and favicon consistent without changing the artwork.
+
 ## v1.0.5 - 2026-10-09
 
 - Add a genuine English screenshot for the app catalog and documentation.
