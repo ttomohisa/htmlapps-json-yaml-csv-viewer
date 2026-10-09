@@ -177,7 +177,7 @@ See [SECURITY.md](SECURITY.md) and [VERIFY_OFFLINE.md](VERIFY_OFFLINE.md) for th
 
 ## Dependencies
 
-Version 1.0.3 has **no runtime third-party JavaScript, CSS, font, WASM, or other package dependency**. Parsing and UI behavior are implemented with browser-native APIs and project code.
+Version 1.0.4 has **no runtime third-party JavaScript, CSS, font, WASM, or other package dependency**. Parsing and UI behavior are implemented with browser-native APIs and project code.
 
 See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for dependency policy and notices.
 

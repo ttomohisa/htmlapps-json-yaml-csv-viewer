@@ -17,3 +17,7 @@ Write-Host "[OK] CSV precision checks passed." -ForegroundColor Green
 & node (Join-Path $Root "scripts/test-language-refresh.cjs")
 if ($LASTEXITCODE -ne 0) { throw "Language refresh regression checks failed." }
 Write-Host "[OK] Language refresh checks passed." -ForegroundColor Green
+
+# Keep the supplied icon consistent across every release surface.
+& node (Join-Path $Root "scripts/test-icon-parity.cjs")
+if ($LASTEXITCODE -ne 0) { throw "Icon parity regression checks failed." }
