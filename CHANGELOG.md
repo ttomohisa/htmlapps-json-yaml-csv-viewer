@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.4 - 2026-10-09
+
+- Apply the supplied redesigned icon to the canonical SVG asset, app header, and embedded favicons across standalone releases.
+- Preserve the original SVG artwork and viewBox; add regression checks for asset and release icon parity.
+
 ## v1.0.3 - 2026-10-06
 
 - Refresh existing data-quality results immediately when switching between Japanese and English, without reparsing the file or changing its data.
