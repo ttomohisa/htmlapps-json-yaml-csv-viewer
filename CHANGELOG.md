@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.5 - 2026-10-09
+
+- Add a genuine English screenshot for the app catalog and documentation.
+
 ## v1.0.4 - 2026-10-09
 
 - Apply the supplied redesigned icon to the canonical SVG asset, app header, and embedded favicons across standalone releases.
