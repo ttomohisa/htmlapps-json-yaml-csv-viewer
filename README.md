@@ -16,6 +16,8 @@ GitHub Pages delivers the initial HTML. After it loads, file decoding, parsing, 
 
 ![JSON / YAML / CSV Viewer showing an expanded sample JSON tree and data-quality summary](assets/screenshot-en.png)
 
+Dialog content remains scrollable in short or zoomed windows, and the background page stays still while a dialog is open.
+
 ## Features
 
 - Open files by drag and drop or file picker

@@ -3,7 +3,7 @@
 ## 1. Product identity
 
 - **Name:** JSON / YAML / CSV Viewer
-- **Version:** 1.0.6
+- **Version:** 1.0.7
 - **Purpose:** Inspect, search, profile, validate, and convert common structured-data files without uploading them.
 - **Release artifacts:** `dist/index.html` and `dist/index.self-extract.html`
 
@@ -89,3 +89,8 @@
 - Safe numbers, booleans, nulls, empty fields, header handling, and the existing CSV/TSV parser remain compatible.
 - Protected values stay strings in schema/profile output and survive CSV, JSON, and YAML export/reimport; numeric-looking strings are quoted in YAML output.
 - This is not arbitrary-precision decimal parsing. Ordinary decimals and JSON/YAML numeric input retain their existing Number semantics.
+
+## Dialog layout acceptance
+
+- Help and export dialogs share their bounded height between a fixed header and a scrollable body, so no content is clipped beyond the scroll range.
+- The background document stays still while a dialog is open; native Escape, backdrop dismissal and focus restoration remain unchanged.

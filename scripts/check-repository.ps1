@@ -21,3 +21,7 @@ Write-Host "[OK] Language refresh checks passed." -ForegroundColor Green
 # Keep the supplied icon consistent across every release surface.
 & node (Join-Path $Root "scripts/test-icon-parity.cjs")
 if ($LASTEXITCODE -ne 0) { throw "Icon parity regression checks failed." }
+
+# Dialog bounds and background scrolling regression contracts.
+& node (Join-Path $Root "scripts/test-dialog-layout.cjs") "src/index.template.html" "dist/index.html" "json-yaml-csv-viewer.html" "dist/index.self-extract.html"
+if ($LASTEXITCODE -ne 0) { throw "Dialog layout regression checks failed." }
