@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.7 - 2026-10-10
+
+- Keep the entire Help and export dialog body reachable when a taller desktop window reaches the dialog height limit.
+- Contain modal scrolling and prevent the background document from moving while a dialog is open.
+
 ## 1.0.6 - 2026-10-09
 
 - Normalize the app icon background to `#16624f` with 25% corner radii, and keep the asset, header and favicon consistent without changing the artwork.
