@@ -25,3 +25,10 @@ if ($LASTEXITCODE -ne 0) { throw "Icon parity regression checks failed." }
 # Dialog bounds and background scrolling regression contracts.
 & node (Join-Path $Root "scripts/test-dialog-layout.cjs") "src/index.template.html" "dist/index.html" "json-yaml-csv-viewer.html" "dist/index.self-extract.html"
 if ($LASTEXITCODE -ne 0) { throw "Dialog layout regression checks failed." }
+
+
+# Keep user help focused on usage rather than implementation audit notes.
+foreach ($HelpArtifact in @("src/index.template.html", "dist/index.html", "dist/index.self-extract.html")) {
+  & node (Join-Path $Root "scripts/test-help-copy.cjs") --html (Join-Path $Root $HelpArtifact)
+  if ($LASTEXITCODE -ne 0) { throw "Help copy regression failed: $HelpArtifact" }
+}
