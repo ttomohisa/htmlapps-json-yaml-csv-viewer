@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "builder": "htmlapps-template/1.0",
-  "generatedAtUtc": "2026-10-11T22:17:49.9676080Z",
+  "generatedAtUtc": "2026-10-23T08:51:31.3212511Z",
   "app": {
     "name": "JSON / YAML / CSV Viewer",
     "slug": "htmlapps-json-yaml-csv-viewer",
