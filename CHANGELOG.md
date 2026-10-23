@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Hide the informational footer at phone widths while preserving action controls and the wider-screen footer.
+
 ## 1.0.7 - 2026-10-10
 
 - Keep the entire Help and export dialog body reachable when a taller desktop window reaches the dialog height limit.

@@ -47,6 +47,7 @@
 
 - Light-only UI following `htmlapps-template`.
 - Mobile-first behavior from 320 px upward.
+- The informational page footer is hidden at the existing 640px phone breakpoint and retained on wider screens; action controls and their content clearance remain unchanged.
 - Visible keyboard focus, accessible labels, native dialogs, and `aria-live` status.
 - Respect `prefers-reduced-motion`.
 - Japanese and English in the same HTML.
