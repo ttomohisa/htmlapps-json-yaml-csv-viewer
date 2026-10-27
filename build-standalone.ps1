@@ -41,7 +41,9 @@ foreach($d in $deps){
   $bundle.dependencies[$id]=[ordered]@{package=$pkg;version=$ver;assets=$assets}; $manifestDeps+=[ordered]@{id=$id;package=$pkg;version=$ver;license=[string]$d.license;homepage=[string]$d.homepage;tarballSha256=(Get-FileHash -Algorithm SHA256 $tgz).Hash.ToLowerInvariant();assets=$manifestAssets}
 }
 $manifest=[ordered]@{schemaVersion=1;builder='htmlapps-template/1.0';generatedAtUtc=[DateTime]::UtcNow.ToString('o');app=[ordered]@{name=[string]$app.name;slug=[string]$app.slug;version=[string]$app.version};dependencies=$manifestDeps}
-$template=[IO.File]::ReadAllText($TemplatePath,[Text.Encoding]::UTF8)
+$template=[System.IO.File]::ReadAllText($TemplatePath,[Text.Encoding]::UTF8)
+. (Join-Path $Root "scripts/embed-ui-conventions.ps1")
+$template = Expand-BrowserKittyUI -Template $template -ComponentsPath (Join-Path $Root "components")
 $bundleJson=Json $bundle 50
 $faviconSource=Join-Path $Root 'assets\favicon.svg'; if(-not(Test-Path $faviconSource)){throw 'assets/favicon.svg is required.'}; $faviconDataUrl='data:image/svg+xml;base64,'+[Convert]::ToBase64String([IO.File]::ReadAllBytes($faviconSource))
 $replace=[ordered]@{'__APP_CONFIG_JSON__'=(Json $app 20);'__BUILD_MANIFEST_JSON__'=(Json $manifest 40);'__EMBEDDED_ASSET_BUNDLE_BASE64__'=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($bundleJson));'__FAVICON_DATA_URL__'=$faviconDataUrl}
@@ -53,4 +55,5 @@ New-Item -ItemType Directory -Force -Path (Split-Path -Parent $OutputPath)|Out-N
 [IO.File]::WriteAllText((Join-Path (Split-Path -Parent $OutputPath) '.nojekyll'),'',(New-Object Text.UTF8Encoding($false)))
 & (Join-Path $Root 'scripts\verify-standalone.ps1') -Path $OutputPath -RequireNetworkBlock ([bool]$app.build.blockRuntimeNetwork)
 if(-not $SkipSelfExtract -and $app.build.selfExtract -and [bool]$app.build.selfExtract.enabled){$self=Join-Path $Root ([string]$app.build.selfExtract.output); & (Join-Path $Root 'scripts\build-self-extract.ps1') -InputPath $OutputPath -OutputPath $self -AppName ([string]$app.name) -AppNameJa ([string]$app.nameJa)}
+Copy-Item -LiteralPath $OutputPath -Destination (Join-Path $Root "json-yaml-csv-viewer.html")
 Write-Host "[OK] Standalone HTML: $OutputPath" -ForegroundColor Green

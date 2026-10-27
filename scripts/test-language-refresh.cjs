@@ -18,7 +18,7 @@ function harness(html, language = 'ja') {
       const attrs = {}, classes = new Set();
       nodes.set(selector, { attrs, dataset: {}, value: '', textContent: '', innerHTML: '', style: {},
         setAttribute(key, value) { attrs[key] = String(value); },
-        getAttribute(key) { return attrs[key] ?? null; },
+        removeAttribute(key) { delete attrs[key]; }, getAttribute(key) { return attrs[key] ?? null; },
         classList: { add: name => classes.add(name), remove: name => classes.delete(name), contains: name => classes.has(name), toggle: (name, enabled) => enabled ? classes.add(name) : classes.delete(name) },
         addEventListener() {}, click() {}, showModal() {}, close() {}
       });
@@ -42,10 +42,10 @@ function harness(html, language = 'ja') {
       return attr ? [...nodes.values()].filter(n => Object.hasOwn(n.attrs, attr)) : [];
     }
   };
-  const app = vm.createContext({ document, navigator: { language }, location: { protocol: 'file:' }, TextEncoder, TextDecoder, console, setTimeout: () => 1, clearTimeout() {} });
+  const app = vm.createContext({ BrowserKittyUI:require('../components/ui-conventions.js'), renderUi(){}, document, navigator: { language }, location: { protocol: 'file:' }, TextEncoder, TextDecoder, console, setTimeout: () => 1, clearTimeout() {} });
   const start = html.indexOf("'use strict';\nconst $=");
   assert.notEqual(start, -1, 'Locate production application code');
-  vm.runInContext(html.slice(start, html.lastIndexOf('})();')) + '\nglobalThis.appState=state;', app);
+  vm.runInContext(html.slice(start, html.lastIndexOf('})();')).replace('BrowserKittyUI.resolveLanguage()', 'BrowserKittyUI.resolveLanguage({languages:[navigator.language]})') + '\nglobalThis.appState=state;', app);
   return { app, state: app.appState, document, element, nodes,
     toggle() { element('#langBtn').onclick(); },
     load(text, format = 'json') { app.loadText('test.' + format, text, format); },

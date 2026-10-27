@@ -32,3 +32,9 @@ foreach ($HelpArtifact in @("src/index.template.html", "dist/index.html", "dist/
   & node (Join-Path $Root "scripts/test-help-copy.cjs") --html (Join-Path $Root $HelpArtifact)
   if ($LASTEXITCODE -ne 0) { throw "Help copy regression failed: $HelpArtifact" }
 }
+
+& node --test (Join-Path $Root "scripts/test-tree-copy.cjs") (Join-Path $Root "scripts/test-search.cjs") (Join-Path $Root "scripts/test-large-data.cjs")
+if ($LASTEXITCODE -ne 0) { throw "Production data/UI regression checks failed." }
+
+& node (Join-Path $Root "scripts/test-common-ui.cjs")
+if ($LASTEXITCODE -ne 0) { throw "Shared UI pin/release/language checks failed." }

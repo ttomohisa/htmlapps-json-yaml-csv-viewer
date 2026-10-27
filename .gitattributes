@@ -3,3 +3,7 @@
 *.bat text eol=crlf
 *.html text eol=lf
 *.md text eol=lf
+
+components/ui-conventions.js text eol=lf
+
+components/ui-conventions.css text eol=lf

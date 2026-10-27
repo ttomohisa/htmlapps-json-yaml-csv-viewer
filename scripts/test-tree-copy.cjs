@@ -23,7 +23,7 @@ function harness(html, language = 'en', protocol = 'https:') {
       const classes = new Set();
       const el = { value: '', textContent: '', dataset: {}, style: {}, isConnected: true,
         classList: { add: v => classes.add(v), remove: v => classes.delete(v), contains: v => classes.has(v), toggle: (v, on) => on ? classes.add(v) : classes.delete(v) },
-        setAttribute() {}, addEventListener() {}, select() {}, remove() { this.isConnected = false; }, click() {}, showModal() {}, close() {} };
+        setAttribute() {}, removeAttribute() {}, addEventListener() {}, select() {}, focus() {}, remove() { this.isConnected = false; }, click() {}, showModal() {}, close() {} };
       let content = '';
       Object.defineProperty(el, 'innerHTML', { get: () => content, set: value => {
         content = value;
@@ -52,9 +52,9 @@ function harness(html, language = 'en', protocol = 'https:') {
     createElement() { return { value: '', style: {}, select() { copied.push(this.value); }, remove() { this.removed = true; } }; },
     body: { appendChild() {} }, execCommand: () => fallback()
   };
-  const app = vm.createContext({ document, navigator: { language, clipboard: { writeText: text => native(text) } }, location: { protocol }, TextEncoder, TextDecoder, console: { error: e => errors.push(e) }, setTimeout: () => 1, clearTimeout() {} });
+  const app = vm.createContext({ BrowserKittyUI:require('../components/ui-conventions.js'), renderUi(){}, document, navigator: { language, clipboard: { writeText: text => native(text) } }, location: { protocol }, TextEncoder, TextDecoder, console: { error: e => errors.push(e) }, Blob, URL, setTimeout: () => 1, clearTimeout() {} });
   const code = html.slice(html.indexOf("'use strict';\nconst $="), html.lastIndexOf('})();'));
-  vm.runInContext(code + '\nglobalThis.appState=state;', app);
+  vm.runInContext(code.replace('BrowserKittyUI.resolveLanguage()', 'BrowserKittyUI.resolveLanguage({languages:[navigator.language]})') + '\nglobalThis.appState=state;', app);
   return { app, state: app.appState, element, document, writes, copied, errors,
     buttons(key = 'copyJson') { return document.querySelectorAll('[data-' + key.replace(/[A-Z]/g, c => '-' + c.toLowerCase()) + ']'); },
     load(value) { app.loadText('test.json', JSON.stringify(value), 'json'); },
@@ -194,4 +194,12 @@ for (const [label, html] of releases) {
     assert.match(html, /@media\s*\(hover:\s*none\)/);
     assert.match(html, /connect-src 'none'/);
   });
+}
+
+for(const [label,html] of releases){
+ test(`${label}: rejected replacement preserves current data and persistent recovery across language`,async()=>{const h=harness(html);h.load({keep:[1,2]});const before=JSON.stringify(h.state.data);await h.app.loadFile({name:'bad.json',size:1,arrayBuffer:async()=>new TextEncoder().encode('{').buffer});assert.equal(JSON.stringify(h.state.data),before);assert.match(h.element('#workNotice').textContent,/failed/i);h.element('#langBtn').onclick();assert.match(h.element('#workNotice').textContent,/失敗/);assert.equal(JSON.stringify(h.state.data),before)});
+ test(`${label}: pending read disables competing operations and reset invalidates completion`,async()=>{const h=harness(html);h.load({keep:1});let finish;const pending=h.app.loadFile({name:'late.json',size:2,arrayBuffer:()=>new Promise(r=>finish=r)});assert.equal(h.element('#downloadBtn').disabled,true);h.app.reset();finish(new TextEncoder().encode('{}').buffer);await pending;assert.equal(h.state.name,'');assert.equal(h.state.format,null)});
+ test(`${label}: remove confirmation owns source and starts on cancel`,()=>{const h=harness(html);h.load({one:1});h.app.requestRemove();h.load({two:2});h.element('#removeConfirm').onclick();assert.equal(h.state.data.two,2);h.app.requestRemove();h.element('#removeConfirm').onclick();assert.equal(h.state.format,null)});
+ test(`${label}: output captures filename and cleanup runs when anchor delivery throws`,()=>{const h=harness(html);h.load([{a:1}]);h.app.showExport();h.element('#outputName').value='chosen';let anchor;h.document.createElement=()=>anchor={style:{},click(){throw Error('delivery blocked')},remove(){this.removed=true}};h.app.saveAs('csv');assert.equal(anchor.download,'chosen.csv');assert.equal(anchor.hidden,true);assert.equal(anchor.removed,true);assert.match(h.element('#workNotice').textContent,/delivery blocked/);assert.equal(h.state.data[0].a,1)});
+ test(`${label}: explicit language choice preserves view, search and edited output name`,()=>{const h=harness(html);h.load([{a:1}]);h.state.view='table';h.state.page=1;h.element('#searchInput').value='a';h.element('#outputName').value='kept';h.element('#langBtn').onclick();assert.equal(h.element('#outputName').value,'kept');assert.equal(h.element('#searchInput').value,'a');assert.equal(h.state.view,'table');assert.match(h.element('#languageNotice').textContent,/言語/) });
 }

@@ -37,7 +37,7 @@ for (const artifact of artifactPaths.length ? artifactPaths : [path.join(root, '
     const all = selector => nodes.filter(n=>Object.hasOwn(n.attrs,selector.slice(1,-1)));
     const state = { language:'ja', data:[{id:1,value:'東京',amount:null}], page:3, pageSize:100, search:[{path:'$[0].value'}], files:[{id:'one',raw:'9007199254740993'}], activeId:'one' };
     const document = { documentElement:{lang:'ja'} };
-    const context = vm.createContext({document,state,APP_CONFIG:config,I18N:translations,$:get,$$:all,renderHelp(){},renderView(){},renderQuality(){},renderActive(){}});
+    const context = vm.createContext({ BrowserKittyUI:require('../components/ui-conventions.js'), renderUi(){},document,state,APP_CONFIG:config,I18N:translations,$:get,$$:all,renderHelp(){},renderView(){},renderQuality(){},renderActive(){}});
     vm.runInContext(`let lang='ja'; function t(key,vars={}){return String(I18N[${general?'lang':'state.language'}][key]??key).replace(/\\{(\\w+)\\}/g,(_,k)=>vars[k]??'');} ${applySource};globalThis.switchTo=next=>{lang=next;state.language=next;${functionName}();};`,context);
     return {get,nodes,state,document,switchTo:context.switchTo};
   }
