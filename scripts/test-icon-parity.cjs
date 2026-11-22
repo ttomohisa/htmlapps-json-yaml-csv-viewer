@@ -4,7 +4,7 @@ const path = require('node:path');
 const { createHash } = require('node:crypto');
 const { gunzipSync } = require('node:zlib');
 const root = path.resolve(__dirname, '..');
-const expected = {"sha256": "7fdfaed9afcc7c124fe37d3ad7f9cee73d4fcea29006a611de9177ccf734c2f5", "viewBox": "0 0 64 64", "alias": "json-yaml-csv-viewer.html", "imageHeader": false, "faviconPlaceholder": true};
+const expected = {"sha256": "c6940f0cd8756c9c9f1f569dd913aff4a1eb83b74e03b2abc598106725013a03", "viewBox": "2.96875 3.65625 58.0625 56.6875", "alias": "json-yaml-csv-viewer.html", "imageHeader": false, "faviconPlaceholder": true};
 const asset = fs.readFileSync(path.join(root, 'assets/favicon.svg'));
 assert.equal(createHash('sha256').update(asset).digest('hex'), expected.sha256, 'Keep the supplied icon bytes unchanged');
 assert.equal(asset.toString().match(/viewBox="([^"]+)"/)[1], expected.viewBox, 'Preserve the supplied viewBox');
